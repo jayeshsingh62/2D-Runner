@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem explosionParticle;
     public ParticleSystem dirtParticle;
     private AudioSource playerAudio;
+    public AudioClip jumpSound;
+    public AudioClip crashSound;
 
     // Start is called before the first frame update
     void Start()
