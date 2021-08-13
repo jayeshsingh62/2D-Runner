@@ -7,8 +7,10 @@ public class PlayerControllerX : MonoBehaviour
     public bool gameOver;
 
     public float floatForce;
+    public float bounceForce;
     private float gravityModifier = 1.5f;
     private Rigidbody playerRb;
+    public bool isLowEnough = true;
 
     public ParticleSystem explosionParticle;
     public ParticleSystem fireworksParticle;
@@ -16,6 +18,7 @@ public class PlayerControllerX : MonoBehaviour
     private AudioSource playerAudio;
     public AudioClip moneySound;
     public AudioClip explodeSound;
+    
 
 
     // Start is called before the first frame update
@@ -33,6 +36,10 @@ public class PlayerControllerX : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*if (transform.position.y > 14)
+        {
+            isLowEnough = false;
+        }*/
         // While space is pressed and player is low enough, float up
         if (Input.GetKeyDown(KeyCode.Space) && !gameOver)
         {
@@ -59,6 +66,11 @@ public class PlayerControllerX : MonoBehaviour
             playerAudio.PlayOneShot(moneySound, 1.0f);
             Destroy(other.gameObject);
 
+        }
+
+        else if (other.gameObject.CompareTag("Ground"))
+        {
+            playerRb.AddForce(Vector3.up * bounceForce, ForceMode.Impulse);
         }
 
     }
