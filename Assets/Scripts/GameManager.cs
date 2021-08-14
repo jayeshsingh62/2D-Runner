@@ -16,6 +16,17 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (playerControllerScript.gameOver)
+        {
+            if (playerControllerScript.doubleSpeed)
+            {
+                score += 2;
+            }
+            else
+            {
+                score++;
+            }
+            Debug.Log("Score :" + score);
+        }
     }
 }
