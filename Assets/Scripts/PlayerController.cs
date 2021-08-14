@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 10;
     public float doubleJumpForce = 10;
     public float gravityModifier;
+    public float dashForce;
+    public bool doubleSpeed = false;
     public bool isOnGround = true;
     public bool doubleJumpUsed = false;
     public bool gameOver;
@@ -17,7 +19,7 @@ public class PlayerController : MonoBehaviour
     private AudioSource playerAudio;
     public AudioClip jumpSound;
     public AudioClip crashSound;
-    public float dashForce;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +48,18 @@ public class PlayerController : MonoBehaviour
             playerAnim.Play("Running_Jump", 3, 0f);
             playerAudio.PlayOneShot(jumpSound, 1.0f);
         }
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            doubleSpeed = true;
+            playerAnim.SetFloat("Speed_Multiplier", 2.0f);
+        }
+        else if (doubleSpeed)
+        {
+            doubleSpeed = false;
+            playerAnim.SetFloat("Speed_Multiplier", 1.0f);
+        }
+
     }
 
     private void OnCollisionEnter(Collision collision)
