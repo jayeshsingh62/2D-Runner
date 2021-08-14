@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     private AudioSource playerAudio;
     public AudioClip jumpSound;
     public AudioClip crashSound;
-
+    public float dashForce;
     // Start is called before the first frame update
     void Start()
     {
